@@ -1,10 +1,20 @@
 package com.cd2.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Model {
+public class Model implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private double  peso;
 	private String cepOrigem;
 	private String cepDestino;
@@ -16,7 +26,8 @@ public class Model {
 	public Model() {
 		super();
 	}
-	public Model(double peso, String cepOrigem, String cepDestino, String nomeDestinatario, double vlTotalFrete, String dataPrevistaEntrega, String dataConsulta) {
+	public Model(double peso, String cepOrigem, String cepDestino, String nomeDestinatario, 
+			double vlTotalFrete, String dataPrevistaEntrega, String dataConsulta, Integer id) {
 		super();
 		this.peso = peso;
 		this.cepOrigem = cepOrigem;
@@ -25,6 +36,7 @@ public class Model {
 		this.vlTotalFrete = vlTotalFrete;
 		this.dataPrevistaEntrega = dataPrevistaEntrega;
 		this.dataConsulta = dataConsulta;
+		this.id = id;
 		
 	}
 	public double getPeso() {
@@ -68,6 +80,36 @@ public class Model {
 	}
 	public void setDataConsulta(String dataConsulta) {
 		this.dataConsulta = dataConsulta;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Model other = (Model) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 	
 }
