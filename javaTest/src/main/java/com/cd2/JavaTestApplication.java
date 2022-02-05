@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.cd2.domain"})
-@ComponentScan(basePackages = {"com.cd2.service", "com.cd2.exceptions"})
+@ComponentScan(basePackages = {"com.cd2.service", "com.cd2.exceptions", "com.cd2.controller"})
 @EnableJpaRepositories(basePackages = {"com.cd2.repository"})
 @EnableAutoConfiguration
 @EnableConfigurationProperties
